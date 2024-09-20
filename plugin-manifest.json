@@ -1,0 +1,16 @@
+{
+  "locale": [],
+  "service": "LOGS360CLOUD",
+  "whiteListedDomains": [],
+  "modules": {
+    "widgets": [
+      {
+        "location": "dashboard.widget",
+        "url": "/app/widget.html",
+        "name": "Sample Log360 cloud widget"
+      }
+    ]
+  },
+  "connectors": [],
+  "config": []
+}

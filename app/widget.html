@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../app/css/app.css">
+    <link rel="icon" type="image/x-icon" href="../app/images/favicon.ico">
+    <script src="../app/js/jquery-min.js"></script>
+    <script src="../app/js/ZSDK.js"></script>
+    <script type="module" src="../app/js/AppView.js"></script>
+    <script type="module" src="../app/js/widgets/Overview.js"></script>
+    <script type="module" src="../app/js/widgets/TopAlerts.js"></script>
+    <script type="module" src="../app/js/widgets/EndpointHealthData.js"></script>
+    <script type="module" src="../app/js/widgets/RecentInfectedEndpoints.js"></script>
+    <script type="module" src="../app/js/widgets/MitreAttackCoverage.js"></script>
+    <script type="module" src="../app/js/widgets/UserClicksOnRiskyLinks.js"></script>
+    <script src="https://code.highcharts.com/highcharts.js"></script>
+    <script src="https://code.highcharts.com/highcharts-more.js"></script>
+    <script src="https://code.highcharts.com/modules/heatmap.js"></script>
+    <title>Log360 Cloud Widget</title>
+</head>
+
+<body>
+
+    <div class="widgetGrid">
+        <div class="widgetRow">
+            <div class="widgetContainer dataWidgetContainer" id="overviewWidget">
+                <div class="buttons">
+                    <button id="loadWidget" onclick="getOverviewData()">
+                        <img class="button-icon" src="../app/icons/reload.svg" alt="Reload">
+                    </button>
+                </div>
+
+                <div id="overviewWidgetData" class="widgetData">
+                    <div id="overviewWidgetDataContent" class="widgetGrid">
+                        <div class="dataRow">
+                            <div class="overviewItem">
+                                <div class="itemTitle">Alerts</div>
+                                <div class="itemValue" id="overviewWidgetAlertsCountValue">0</div>
+                            </div>
+                            <div class="overviewItem">
+                                <div class="itemTitle">Infected Endpoints</div>
+                                <div class="itemValue" id="overviewWidgetInfectedEndpointsCountValue">0</div>
+                            </div>
+                        </div>
+                        <div class="dataRow">
+                            <div class="overviewItem">
+                                <div class="itemTitle">App Connections</div>
+                                <div class="itemValue" id="overviewWidgetAppConnectionsCountValue">0</div>
+                            </div>
+                            <div class="overviewItem">
+                                <div class="itemTitle">Web Connections</div>
+                                <div class="itemValue" id="overviewWidgetWebConnectionsCountValue">0</div>
+                            </div>
+                        </div>
+                        <div class="dataRow">
+                            <div class="overviewItem">
+                                <div class="itemTitle">Threat Actors</div>
+                                <div class="itemValue" id="overviewWidgetThreatActorsCountValue">0</div>
+                            </div>
+                            <div class="overviewItem">
+                                <div class="itemTitle">Users</div>
+                                <div class="itemValue" id="overviewWidgetUsersCountValue">0</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="widgetContainer chartWidgetContainer" id="topAlertsWidget">
+                <div class="buttons">
+                    <button id="loadWidget" onclick="getTopAlertsChartData()">
+                        <img class="button-icon" src="../app/icons/reload.svg" alt="Reload">
+                    </button>
+                </div>
+                <div id="topAlertsWidgetChart" class="widgetChart"></div>
+            </div>
+
+            <div class="widgetContainer chartWidgetContainer" id="endpointHealthDataWidget">
+                <div class="buttons">
+                    <button id="loadWidget" onclick="getEndpointsByHealthChartData()">
+                        <img class="button-icon" src="../app/icons/reload.svg" alt="Reload">
+                    </button>
+                </div>
+                <div id="endpointHealthDataWidgetChart" class="widgetChart"></div>
+            </div>
+        </div>
+
+        <div class="widgetRow">
+            <div class="widgetContainer tableWidgetContainer" id="threatActorsWidget">
+                <div class="buttons">
+                    <button id="loadWidget" onclick="getThreatActorsTableData()">
+                        <img class="button-icon" src="../app/icons/reload.svg" alt="Reload">
+                    </button>
+                </div>
+
+                <div id="threatActorsWidgetTable" class="widgetTable">
+                    <h3 class="tableTitle">Threat Actors</h3>
+                    <div id="threatActorsWidgetTableData"></div>
+                </div>
+            </div>
+
+            <div class="widgetContainer tableWidgetContainer" id="infectedEndpointsWidget">
+                <div class="buttons">
+                    <button id="loadWidget" onclick="getRecentInfectedEndpointsTableData()">
+                        <img class="button-icon" src="../app/icons/reload.svg" alt="Reload">
+                    </button>
+                </div>
+
+                <div id="infectedEndpointsWidgetTable" class="widgetTable">
+                    <h3 class="tableTitle">Recent Infected Endpoints</h3>
+                    <div id="infectedEndpointsWidgetTableData"></div>
+                </div>
+            </div>
+        </div>
+
+        <div class="widgetRow">
+            <div class="widgetContainer chartWidgetContainer" id="userClicksOnRiskyLinksWidget">
+                <div class="buttons">
+                    <button id="loadWidget" onclick="getUserClicksOnRiskyLinksChartData()">
+                        <img class="button-icon" src="../app/icons/reload.svg" alt="Reload">
+                    </button>
+                </div>
+                <div id="userClicksOnRiskyLinksWidgetChart" class="widgetChart"></div>
+            </div>
+            <div class="widgetContainer chartWidgetContainer" id="mitreAttackWidget">
+                <div class="buttons">
+                    <button id="loadWidget" onclick="getMitreAttackChartData()">
+                        <img class="button-icon" src="../app/icons/reload.svg" alt="Reload">
+                    </button>
+                </div>
+                <div id="mitreAttackWidgetChart" class="widgetChart"></div>
+            </div>
+        </div>
+    </div>
+
+</body>
+</html>
