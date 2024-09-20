@@ -6,6 +6,10 @@ document.addEventListener('DOMContentLoaded', function () {
         chart: {
             type: 'heatmap'
         },
+
+        credits: {
+            enabled: false
+        },
     
         title: {
             text: 'User Clicks on Risky Links',
@@ -70,8 +74,8 @@ document.addEventListener('DOMContentLoaded', function () {
                 [0.9, '#F9A05C']
             ],
             labels: {
-                format: '{value} °C'
-            }
+                format: '{value:.0f}'
+            },
         },
     
         series: [{
@@ -82,7 +86,7 @@ document.addEventListener('DOMContentLoaded', function () {
             borderColor: 'rgba(196, 196, 196, 0.2)',
             dataLabels: [{
                 enabled: true,
-                format: '{#unless point.custom.empty}{point.value:.1f}°{/unless}',
+                format: '{#unless point.custom.empty}{point.value}{/unless}',
                 style: {
                     textOutline: 'none',
                     fontWeight: 'normal',
@@ -140,7 +144,7 @@ function getUserClicksOnRiskyLinks() {
         }
         events.items.forEach(event => {
             if (event.type == 'Event::Endpoint::WebControlViolation') {
-                var eventDate = event.date.split("T")[0]
+                var eventDate = event.created_at.split("T")[0];
                 var existingEventData = eventsData.find(eventData => eventData.date === eventDate);
                 if (existingEventData) {
                     existingEventData.clickCount += 1;
@@ -158,13 +162,7 @@ function getUserClicksOnRiskyLinks() {
 }
 
 function generateGetUserClicksOnRiskyLinksChartData(data) {
-
-    if (!data || data.length <= 0) {
-        return [];
-    }
-
-    // Calculate the starting weekday index (0-6 of the first date in the given
-    // array)
+    // Calculate the starting weekday index (0-6 of the first date in the given array)
     const firstWeekday = new Date(data[0].date).getDay(),
         monthLength = data.length,
         lastElement = data[monthLength - 1].date,
@@ -173,8 +171,7 @@ function generateGetUserClicksOnRiskyLinksChartData(data) {
         emptyTilesFirst = firstWeekday,
         chartData = [];
 
-    // Add the empty tiles before the first day of the month with null values to
-    // take up space in the chart
+    // Add the empty tiles before the first day of the month with null values
     for (let emptyDay = 0; emptyDay < emptyTilesFirst; emptyDay++) {
         chartData.push({
             x: emptyDay,
@@ -186,20 +183,18 @@ function generateGetUserClicksOnRiskyLinksChartData(data) {
             }
         });
     }
-
+    
+    let yCoordinate = 0;
     // Loop through and populate with clickCount and dates from the dataset
     for (let day = 1; day <= monthLength; day++) {
         // Get date from the given data array
         const date = data[day - 1].date;
         // Offset by thenumber of empty tiles
         const xCoordinate = (emptyTilesFirst + day - 1) % 7;
-        const yCoordinate = Math.floor((firstWeekday + day - 1) / 7);
+        yCoordinate = Math.floor((firstWeekday + day - 1) / 7);
         const id = day;
-
         // Get the corresponding clickCount for the current day from the given
-        // array
         const clickCount = data[day - 1].clickCount;
-
         chartData.push({
             x: xCoordinate,
             y: 5 - yCoordinate,
@@ -211,12 +206,12 @@ function generateGetUserClicksOnRiskyLinksChartData(data) {
         });
     }
 
-    // Fill in the missing values when dataset is looped through.
+    // Fill in the missing values at current row
     const emptyTilesLast = lengthOfWeek - lastWeekday;
     for (let emptyDay = 1; emptyDay <= emptyTilesLast; emptyDay++) {
         chartData.push({
             x: (lastWeekday + emptyDay) % 7,
-            y: 0,
+            y: 5 - yCoordinate,
             value: null,
             date: null,
             custom: {
@@ -224,140 +219,61 @@ function generateGetUserClicksOnRiskyLinksChartData(data) {
             }
         });
     }
+
+    // Fill in the missing rows
+    // yCoordinate++;
+    // while(yCoordinate < 6){
+    //     for (let xValue = 0; xValue <= lengthOfWeek; xValue++) {
+    //         chartData.push({
+    //             x: xValue,
+    //             y: 5 - yCoordinate,
+    //             value: null,
+    //             date: null,
+    //             custom: {
+    //                 empty: true
+    //             }
+    //         });
+    //     }
+    //     yCoordinate++;
+    // }    
     return chartData;
 }
 
-export function getUserClicksOnRiskyLinksChartData() {
+function generateMonthlyUserClicksOnRiskyLinks(providedData = []) {
+    const today = new Date();
+    const year = today.getFullYear();
+    const month = today.getMonth() + 1; // Adding 1 to get the correct month number (1 for January, 12 for December)
+    // Get the number of days in the current month
+    const daysInMonth = new Date(year, month, 0).getDate();
+    const currentDay = today.getDate(); // Get today's day in the month
+    // Convert providedData to a map for easy lookup
+    const providedDataMap = providedData.reduce((map, entry) => {
+        map[entry.date] = entry.clickCount;
+        return map;
+    }, {});
+    const result = [];
+    // Loop through all the days of the current month
+    for (let day = 1; day <= daysInMonth; day++) {
+        // Format the date as 'YYYY-MM-DD'
+        const date = `${year}-${String(month).padStart(2, '0')}-${String(day).padStart(2, '0')}`;
+        // Use the clickCount from providedData if available, otherwise default to 0
+        const clickCount = providedDataMap[date] || 0;
 
+        result.push({
+            date: date,
+            clickCount: clickCount
+        });
+    }
+    return result;
+}
+
+export function getUserClicksOnRiskyLinksChartData() {
     getUserClicksOnRiskyLinks().then(userClicks => {
         if (!userClicks) {
             console.error('User Clicks response is undefined');
             return;
         }
-        var chartData = generateGetUserClicksOnRiskyLinksChartData([{
-            date: '2023-07-01',
-            clickCount: 19.1
-        },
-        {
-            date: '2023-07-02',
-            clickCount: 15.3
-        },
-        {
-            date: '2023-07-03',
-            clickCount: 16.4
-        },
-        {
-            date: '2023-07-04',
-            clickCount: 16.0
-        },
-        {
-            date: '2023-07-05',
-            clickCount: 17.9
-        },
-        {
-            date: '2023-07-06',
-            clickCount: 15.8
-        },
-        {
-            date: '2023-07-07',
-            clickCount: 21.1
-        },
-        {
-            date: '2023-07-08',
-            clickCount: 23.3
-        },
-        {
-            date: '2023-07-09',
-            clickCount: 24.8
-        },
-        {
-            date: '2023-07-10',
-            clickCount: 25.1
-        },
-        {
-            date: '2023-07-11',
-            clickCount: 18.2
-        },
-        {
-            date: '2023-07-12',
-            clickCount: 14.4
-        },
-        {
-            date: '2023-07-13',
-            clickCount: 19.3
-        },
-        {
-            date: '2023-07-14',
-            clickCount: 20.2
-        },
-        {
-            date: '2023-07-15',
-            clickCount: 15.8
-        },
-        {
-            date: '2023-07-16',
-            clickCount: 16.1
-        },
-        {
-            date: '2023-07-17',
-            clickCount: 15.7
-        },
-        {
-            date: '2023-07-18',
-            clickCount: 19.2
-        },
-        {
-            date: '2023-07-19',
-            clickCount: 18.6
-        },
-        {
-            date: '2023-07-20',
-            clickCount: 18.3
-        },
-        {
-            date: '2023-07-21',
-            clickCount: 15.0
-        },
-        {
-            date: '2023-07-22',
-            clickCount: 14.7
-        },
-        {
-            date: '2023-07-23',
-            clickCount: 18.8
-        },
-        {
-            date: '2023-07-24',
-            clickCount: 17.7
-        },
-        {
-            date: '2023-07-25',
-            clickCount: 17.4
-        },
-        {
-            date: '2023-07-26',
-            clickCount: 17.6
-        },
-        {
-            date: '2023-07-27',
-            clickCount: 18.1
-        },
-        {
-            date: '2023-07-28',
-            clickCount: 18.2
-        },
-        {
-            date: '2023-07-29',
-            clickCount: 20.3
-        },
-        {
-            date: '2023-07-30',
-            clickCount: 16.4
-        },
-        {
-            date: '2023-07-31',
-            clickCount: 17.0
-        }]);
+        const chartData = generateGetUserClicksOnRiskyLinksChartData(generateMonthlyUserClicksOnRiskyLinks(userClicks));
         userClicksOnRiskyLinksChart.series[0].setData(chartData);
     });
 }
