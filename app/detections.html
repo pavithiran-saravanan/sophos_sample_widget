@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../app/css/app.css">
+    <link rel="icon" type="image/x-icon" href="../app/images/favicon.ico">
+    <script src="../app/js/jquery-min.js"></script>
+    <script src="../app/js/ZSDK.js"></script>
+    <script type="module" src="../app/js/AppView.js"></script>
+    <script type="module" src="../app/js/widgets/Overview.js"></script>
+    <script type="module" src="../app/js/widgets/TopAlerts.js"></script>
+    <script type="module" src="../app/js/widgets/EndpointHealthData.js"></script>
+    <script type="module" src="../app/js/widgets/RecentInfectedEndpoints.js"></script>
+    <script type="module" src="../app/js/widgets/MitreAttackCoverage.js"></script>
+    <script type="module" src="../app/js/widgets/UserClicksOnRiskyLinks.js"></script>
+    <script src="https://code.highcharts.com/highcharts.js"></script>
+    <script src="https://code.highcharts.com/highcharts-more.js"></script>
+    <script src="https://code.highcharts.com/modules/heatmap.js"></script>
+    <title>L3C Sophos Central Detections</title>
+</head>
+
+<body>
+    <div class="detectionsContainer">
+        <div class="widgetContainer alertsWidgetContainer">
+            <div class="buttons">
+                <button id="loadWidget" onclick="">
+                    <img class="button-icon" src="../app/icons/reload.svg" alt="Reload">
+                </button>
+            </div>
+            <div class="widgetData"></div>
+        </div>
+        <div class="widgetContainer alertHeatMapContainer">
+            <div class="buttons">
+                <button id="loadWidget" onclick="">
+                    <img class="button-icon" src="../app/icons/reload.svg" alt="Reload">
+                </button>
+            </div>
+            <div class="widgetData"></div>
+        </div>
+        <div class="widgetContainer historyOfActionsContainer">
+            <div class="buttons">
+                <button id="loadWidget" onclick="">
+                    <img class="button-icon" src="../app/icons/reload.svg" alt="Reload">
+                </button>
+            </div>
+            <div class="widgetData"></div>
+        </div>
+        <div class="widgetContainer topEndpointsContainer">
+            <div class="buttons">
+                <button id="loadWidget" onclick="">
+                    <img class="button-icon" src="../app/icons/reload.svg" alt="Reload">
+                </button>
+            </div>
+            <div class="widgetData"></div>
+        </div>
+        <div class="widgetContainer alertsListContainer widgetContainerTall">
+            <div class="buttons">
+                <button id="loadWidget" onclick="">
+                    <img class="button-icon" src="../app/icons/reload.svg" alt="Reload">
+                </button>
+            </div>
+            <div class="widgetData"></div>
+        </div>
+    </div>
+</body>
+</html>

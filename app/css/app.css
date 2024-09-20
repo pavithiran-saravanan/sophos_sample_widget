@@ -28,9 +28,9 @@
 /* Widget container styles */
 .widgetContainer {
     background-color: white;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    border: 1.5px solid lightgrey;
     padding: 22px;
-    border-radius: 10px;
+    border-radius: 4px;
     position: relative;
     height: 500px; /* Fixed height for uniformity */
     width: 100%; /* Full width of its parent row */
@@ -160,3 +160,22 @@
     align-items: center;
     height: 100%;
 }
+
+/* Detections Tab */
+
+.detectionsContainer {
+    display: grid;
+    grid-template-columns: repeat(8, 1fr);
+    grid-template-rows: repeat(3, 1fr);
+    grid-gap: 20px;
+
+}
+    
+.widgetContainerTall {
+    height: 100%;
+}
+.alertsWidgetContainer { grid-area: 1 / 1 / 2 / 3; }
+.alertHeatMapContainer { grid-area: 1 / 3 / 2 / 9; }
+.historyOfActionsContainer { grid-area: 2 / 1 / 3 / 4; }
+.topEndpointsContainer { grid-area: 3 / 1 / 4 / 4; }
+.alertsListContainer { grid-area: 2 / 4 / 4 / 9; }
