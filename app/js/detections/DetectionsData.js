@@ -6,6 +6,7 @@ $(document).ready(function() {
             whoAmI();
             getalertsWidgetChartData();
             getTopEndpointsByAlertsChartData();
+            getRecentAlertsData();
         });
     })
 });

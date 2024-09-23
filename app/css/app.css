@@ -178,4 +178,38 @@
 .alertHeatMapContainer { grid-area: 1 / 3 / 2 / 9; }
 .historyOfActionsContainer { grid-area: 2 / 1 / 3 / 4; }
 .topEndpointsContainer { grid-area: 3 / 1 / 4 / 4; }
-.alertsListContainer { grid-area: 2 / 4 / 4 / 9; }
+.recentAlertsContainer { grid-area: 2 / 4 / 4 / 9; }
+
+.alertItem{
+    font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    border-left:4px solid;
+    padding : 5px 10px;
+    margin-bottom: 10px;
+    display: grid;
+    column-gap: 5px;
+}
+
+.alertItemTitle, .alertItemTime{
+    font-weight: bolder;
+}
+
+.alertItemDescription, .alertItemDate{
+    color: grey;
+}
+
+.alertItemTitle { grid-area: 1 / 1 / 2 / 5; }
+.alertItemTime { grid-area: 1 / 5 / 2 / 7; }
+.alertItemDescription { grid-area: 2 / 1 / 3 / 5; overflow: hidden; }
+.alertItemDate { grid-area: 2 / 5 / 3 / 7; }
+
+.alertItem, .low{
+    border-color: #e4cd48;
+}
+
+.alertItem, .medium{
+    border-color: #e47c4c;
+}
+
+.alertItem, .high{
+    border-color: #e44c4c;
+}
