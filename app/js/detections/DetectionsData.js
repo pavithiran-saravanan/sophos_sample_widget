@@ -4,8 +4,8 @@ $(document).ready(function() {
     setEnvironment().then((res) => {
         authenticate().then(response => {
             whoAmI();
-            // Get data for widgets
             getalertsWidgetChartData();
+            getTopEndpointsByAlertsChartData();
         });
     })
 });

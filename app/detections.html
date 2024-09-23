@@ -11,6 +11,7 @@
     <script type="module" src="../app/js/AppView.js"></script>
     <script type="module" src="../app/js/detections/DetectionsData.js"></script>
     <script type="module" src="../app/js/detections/Alerts.js"></script>
+    <script type="module" src="../app/js/detections/TopEndpointsByAlerts.js"></script>
     <script src="https://code.highcharts.com/highcharts.js"></script>
     <script src="https://code.highcharts.com/highcharts-more.js"></script>
     <script src="https://code.highcharts.com/modules/heatmap.js"></script>
@@ -33,7 +34,7 @@
                     <img class="button-icon" src="../app/icons/reload.svg" alt="Reload">
                 </button>
             </div>
-            <div class="widgetData"></div>
+            <div class="widgetChart" id=""></div>
         </div>
         <div class="widgetContainer historyOfActionsContainer">
             <div class="buttons">
@@ -41,15 +42,15 @@
                     <img class="button-icon" src="../app/icons/reload.svg" alt="Reload">
                 </button>
             </div>
-            <div class="widgetData"></div>
+            <div class="widgetChart"></div>
         </div>
         <div class="widgetContainer topEndpointsContainer">
             <div class="buttons">
-                <button id="loadWidget" onclick="">
+                <button id="loadWidget" onclick="getTopEndpointsByAlertsChartData()">
                     <img class="button-icon" src="../app/icons/reload.svg" alt="Reload">
                 </button>
             </div>
-            <div class="widgetData"></div>
+            <div class="widgetChart" id="topEndpointsByAlertsWidgetChart"></div>
         </div>
         <div class="widgetContainer alertsListContainer widgetContainerTall">
             <div class="buttons">
@@ -57,7 +58,7 @@
                     <img class="button-icon" src="../app/icons/reload.svg" alt="Reload">
                 </button>
             </div>
-            <div class="widgetData"></div>
+            <div class="widgetChart"></div>
         </div>
     </div>
 </body>
