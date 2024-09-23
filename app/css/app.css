@@ -53,12 +53,12 @@
 
 /* Style for buttons */
 .buttons button {
-    background-color: #007BFF;
+    background-color: cornflowerblue;
     border: none;
     color: black;
     padding: 3px 8px;
     cursor: pointer;
-    border-radius: 4px;
+    border-radius: 50%;
     transition: background-color 0.3s ease;
     display: flex;
     justify-content: center;
@@ -76,7 +76,7 @@
 
 /* Button hover effect */
 .buttons button:hover {
-    background-color: #0056b3;
+    background-color: rgb(71, 128, 234);
 }
 
 /* Icon inside the load widget button */
