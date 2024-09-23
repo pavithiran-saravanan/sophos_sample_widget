@@ -9,12 +9,8 @@
     <script src="../app/js/jquery-min.js"></script>
     <script src="../app/js/ZSDK.js"></script>
     <script type="module" src="../app/js/AppView.js"></script>
-    <script type="module" src="../app/js/widgets/Overview.js"></script>
-    <script type="module" src="../app/js/widgets/TopAlerts.js"></script>
-    <script type="module" src="../app/js/widgets/EndpointHealthData.js"></script>
-    <script type="module" src="../app/js/widgets/RecentInfectedEndpoints.js"></script>
-    <script type="module" src="../app/js/widgets/MitreAttackCoverage.js"></script>
-    <script type="module" src="../app/js/widgets/UserClicksOnRiskyLinks.js"></script>
+    <script type="module" src="../app/js/detections/DetectionsData.js"></script>
+    <script type="module" src="../app/js/detections/Alerts.js"></script>
     <script src="https://code.highcharts.com/highcharts.js"></script>
     <script src="https://code.highcharts.com/highcharts-more.js"></script>
     <script src="https://code.highcharts.com/modules/heatmap.js"></script>
@@ -25,11 +21,11 @@
     <div class="detectionsContainer">
         <div class="widgetContainer alertsWidgetContainer">
             <div class="buttons">
-                <button id="loadWidget" onclick="">
+                <button id="loadWidget" onclick="getalertsWidgetChartData()">
                     <img class="button-icon" src="../app/icons/reload.svg" alt="Reload">
                 </button>
             </div>
-            <div class="widgetData"></div>
+            <div class="widgetChart" id="alertsWidgetChart"></div>
         </div>
         <div class="widgetContainer alertHeatMapContainer">
             <div class="buttons">
