@@ -213,3 +213,38 @@
 .alertItem, .high{
     border-color: #e44c4c;
 }
+
+#alertHeatMap{
+    font-family: Arial, "Helvetica Neue", Helvetica, sans-serif;
+}
+
+#alertHeatMapWidget{
+    display: flex;
+    gap: 20px;
+}
+
+.attackContainer{
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.attackName{
+    font-weight: bold;
+}
+
+.techniqueContainer{
+    background-color: rgb(255, 231, 166);
+    display: grid;
+    gap: 5px;
+    padding: 15px;
+    border-radius: 5px;
+}
+
+.techniqueId{
+    font-weight: bold;
+}
+
+.customWidgetTitle{
+    margin-bottom: 20px;
+}

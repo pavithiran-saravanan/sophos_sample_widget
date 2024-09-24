@@ -13,6 +13,7 @@
     <script type="module" src="../app/js/detections/Alerts.js"></script>
     <script type="module" src="../app/js/detections/TopEndpointsByAlerts.js"></script>
     <script type="module" src="../app/js/detections/RecentAlerts.js"></script>
+    <script type="module" src="../app/js/detections/AlertHeatMap.js"></script>
     <script src="https://code.highcharts.com/highcharts.js"></script>
     <script src="https://code.highcharts.com/highcharts-more.js"></script>
     <script src="https://code.highcharts.com/modules/heatmap.js"></script>
@@ -31,11 +32,14 @@
         </div>
         <div class="widgetContainer alertHeatMapContainer">
             <div class="buttons">
-                <button id="loadWidget" onclick="">
+                <button id="loadWidget" onclick="getAlertHeatMapData()">
                     <img class="button-icon" src="../app/icons/reload.svg" alt="Reload">
                 </button>
             </div>
-            <div class="widgetChart" id=""></div>
+            <div class="widgetChart" id="alertHeatMap">
+                <h2 class="customWidgetTitle">Alerts Heat Map</h2>
+                <div id="alertHeatMapWidget"></div>
+            </div>
         </div>
         <div class="widgetContainer historyOfActionsContainer">
             <div class="buttons">

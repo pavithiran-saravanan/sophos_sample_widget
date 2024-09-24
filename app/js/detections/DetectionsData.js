@@ -7,6 +7,7 @@ $(document).ready(function() {
             getalertsWidgetChartData();
             getTopEndpointsByAlertsChartData();
             getRecentAlertsData();
+            getAlertHeatMapData();
         });
     })
 });
