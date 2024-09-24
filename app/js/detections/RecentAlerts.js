@@ -76,6 +76,7 @@ function createAlertItem(alert) {
 export function getRecentAlertsData() {
     queryAlerts().then(alerts=>{
         const recentAlerts = document.querySelector('#recentAlerts'); 
+        recentAlerts.innerHTML = '';
         alerts.items.forEach(alert => {
             recentAlerts.append(createAlertItem(alert));
         });
