@@ -77,6 +77,12 @@ export function getRecentAlertsData() {
     queryAlerts().then(alerts=>{
         const recentAlerts = document.querySelector('#recentAlerts'); 
         recentAlerts.innerHTML = '';
+
+        const recentAlertsTitle = document.createElement('h2');
+        recentAlertsTitle.className = 'customWidgetTitle';
+        recentAlertsTitle.textContent = "Recent Alerts";
+        recentAlerts.append(recentAlertsTitle);
+
         alerts.items.forEach(alert => {
             recentAlerts.append(createAlertItem(alert));
         });

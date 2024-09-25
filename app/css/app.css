@@ -198,9 +198,15 @@
 }
 
 .alertItemTitle { grid-area: 1 / 1 / 2 / 5; }
-.alertItemTime { grid-area: 1 / 5 / 2 / 7; }
+.alertItemTime {
+    grid-area: 1 / 5 / 2 / 7; 
+    text-align: end;
+}
 .alertItemDescription { grid-area: 2 / 1 / 3 / 5; overflow: hidden; }
-.alertItemDate { grid-area: 2 / 5 / 3 / 7; }
+.alertItemDate {
+    grid-area: 2 / 5 / 3 / 7;
+    text-align: end;
+}
 
 .alertItem, .low{
     border-color: #e4cd48;
@@ -247,4 +253,5 @@
 
 .customWidgetTitle{
     margin-bottom: 20px;
+    font-family: sans-serif;
 }
