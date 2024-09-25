@@ -16,14 +16,62 @@
     <script type="module" src="../app/js/widgets/RecentInfectedEndpoints.js"></script>
     <script type="module" src="../app/js/widgets/MitreAttackCoverage.js"></script>
     <script type="module" src="../app/js/widgets/UserClicksOnRiskyLinks.js"></script>
+
     <script src="https://code.highcharts.com/highcharts.js"></script>
     <script src="https://code.highcharts.com/highcharts-more.js"></script>
     <script src="https://code.highcharts.com/modules/heatmap.js"></script>
+
+    <!-- <script src="https://code.highcharts.com/maps/highmaps.js"></script> -->
+    <script src="https://code.highcharts.com/maps/modules/exporting.js"></script>
+    <script src="https://code.highcharts.com/maps/modules/map.js"></script>
+    <script src="https://code.highcharts.com/mapdata/custom/world.js"></script>
     <title>Log360 Cloud Widget</title>
 </head>
 
 <body>
     <div class="widgetGrid">
+        <div class="widgetRow">
+            <div class="widgetContainer" id="">
+                <div class="buttons">
+                    <button id="loadWidget" onclick="">
+                        <img class="button-icon" src="../app/icons/reload.svg" alt="Reload">
+                    </button>
+                </div>
+                <div id="protectionScoreChart" class="widgetChart">
+
+                </div>
+            </div>
+            <div class="widgetContainer" id="">
+                <div class="buttons">
+                    <button id="loadWidget" onclick="">
+                        <img class="button-icon" src="../app/icons/reload.svg" alt="Reload">
+                    </button>
+                </div>
+                <div id="plicyThreatProtectionScoreChart" class="widgetChart">
+
+                </div>
+            </div>
+            <div class="widgetContainer" id="">
+                <div class="buttons">
+                    <button id="loadWidget" onclick="">
+                        <img class="button-icon" src="../app/icons/reload.svg" alt="Reload">
+                    </button>
+                </div>
+                <div id="exclusionScoreChart" class="widgetChart">
+
+                </div>
+            </div>
+            <div class="widgetContainer" id="">
+                <div class="buttons">
+                    <button id="loadWidget" onclick="">
+                        <img class="button-icon" src="../app/icons/reload.svg" alt="Reload">
+                    </button>
+                </div>
+                <div id="tamperProtectionScoreChart" class="widgetChart">
+
+                </div>
+            </div>
+        </div>
         <div class="widgetRow">
             <div class="widgetContainer dataWidgetContainer" id="overviewWidget">
                 <div class="buttons">
@@ -131,6 +179,16 @@
                     </button>
                 </div>
                 <div id="mitreAttackWidgetChart" class="widgetChart"></div>
+            </div>
+        </div>
+        <div class="widgetRow">
+            <div class="widgetContainer" id="">
+                <div class="buttons">
+                    <button id="loadWidget" onclick="">
+                        <img class="button-icon" src="../app/icons/reload.svg" alt="Reload">
+                    </button>
+                </div>
+                <div id="regionalProtectionScoreWidgetChart" class="widgetChart"></div>
             </div>
         </div>
     </div>

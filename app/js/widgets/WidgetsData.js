@@ -6,11 +6,14 @@ import { getOverviewData } from './Overview.js';
 import { getMitreAttackChartData } from './MitreAttackCoverage.js';
 import { getUserClicksOnRiskyLinksChartData } from './UserClicksOnRiskyLinks.js';
 import { setEnvironment, authenticate, whoAmI } from '../AppView.js';
+import { getRegionalProtectionScoreChartData } from './RegionalProtectionScore.js';
+import { getHealthScoresChartData } from './HealthScores.js';
 
 $(document).ready(function() {
     setEnvironment().then((res) => {
         authenticate().then(response => {
             whoAmI();
+            getHealthScoresChartData();
             getTopAlertsChartData();
             getEndpointsByHealthChartData();
             getRecentInfectedEndpointsTableData();
@@ -18,6 +21,7 @@ $(document).ready(function() {
             getOverviewData();
             getUserClicksOnRiskyLinksChartData();
             getMitreAttackChartData();
+            getRegionalProtectionScoreChartData();
         });
     })
 });
