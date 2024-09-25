@@ -111,6 +111,7 @@ export function getAlertHeatMapData() {
 
         console.log(tacticNameToIdMap, tacticAlertsCounter);
         const alertHeatMapContainer = document.querySelector('#alertHeatMapWidget');
+        alertHeatMapContainer.innerHTML = '';
         Object.entries(tacticNameToIdMap).forEach(tactic => {
             let alertsCount = tactic[1].length;
             const attackDiv = getAttackDiv(tactic[0], alertsCount);
