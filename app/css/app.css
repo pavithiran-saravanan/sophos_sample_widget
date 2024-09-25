@@ -171,14 +171,16 @@
 
 }
     
-.widgetContainerTall {
-    height: 100%;
-}
 .alertsWidgetContainer { grid-area: 1 / 1 / 2 / 3; }
 .alertHeatMapContainer { grid-area: 1 / 3 / 2 / 9; }
 .historyOfActionsContainer { grid-area: 2 / 1 / 3 / 4; }
 .topEndpointsContainer { grid-area: 3 / 1 / 4 / 4; }
 .recentAlertsContainer { grid-area: 2 / 4 / 4 / 9; }
+
+.widgetContainerTall {
+    height: 1020px;
+    overflow-y: scroll;
+}
 
 .alertItem{
     font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
