@@ -16,6 +16,7 @@
     <script type="module" src="../app/js/widgets/RecentInfectedEndpoints.js"></script>
     <script type="module" src="../app/js/widgets/MitreAttackCoverage.js"></script>
     <script type="module" src="../app/js/widgets/UserClicksOnRiskyLinks.js"></script>
+    <script type="module" src="../app/js/widgets/RegionalProtectionScore.js"></script>
 
     <script src="https://code.highcharts.com/highcharts.js"></script>
     <script src="https://code.highcharts.com/highcharts-more.js"></script>
@@ -183,8 +184,17 @@
         </div>
         <div class="widgetRow">
             <div class="widgetContainer" id="">
+                <h3 class="customWidgetTitle">
+                    <label for="regionalProtectionSelector">Regional Protection Score </label>
+                    <select id="regionalProtectionSelector" onchange="updateRegionalProtectionScoreChartData()">
+                      <option selected="selected" value="protectionScore">Protection Score</option>
+                      <option value="policyThreatProtectionScore">Policy Threat Protection Score</option>
+                      <option value="exclusionScore">Exclusion Score</option>
+                      <option value="tamperProtectionScore">Tamper Protection Score</option>
+                    </select>
+                </h3>
                 <div class="buttons">
-                    <button id="loadWidget" onclick="">
+                    <button id="loadWidget" onclick="getRegionalProtectionScoreChartData()">
                         <img class="button-icon" src="../app/icons/reload.svg" alt="Reload">
                     </button>
                 </div>

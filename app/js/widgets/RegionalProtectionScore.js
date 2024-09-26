@@ -11,7 +11,7 @@ document.addEventListener('DOMContentLoaded', function () {
         },
 
         title: {
-            text: 'Regional Protection Score',
+            text: '',
             align: 'left'
         },
 
@@ -74,6 +74,7 @@ document.addEventListener('DOMContentLoaded', function () {
             name: 'Score',
             joinBy: ['iso-a2', 'code'], // Using 'iso-a2' as join key
             data: [
+                // Country code, score, names are to be set 
                 { code: 'IN', z: 30, name: 'India', score: 'low' },
                 { code: 'US', z: 60, name: 'USA', score: 'medium' },
                 { code: 'RU', z: 90, name: 'Russia', score: 'high' },
@@ -91,10 +92,28 @@ document.addEventListener('DOMContentLoaded', function () {
 function runDetectionsQuery() {
 }
 
-function getDetectionsResult() {
+export function getRegionalProtectionScoreChartData() {
+    console.log('getRegionalProtectionScoreChartData');
 }
 
-export function getRegionalProtectionScoreChartData() {
+export function updateRegionalProtectionScoreChartData(event){
+    const selector = document.querySelector('#regionalProtectionSelector');
+    const selectedValue = selector.value;
+    console.log(selectedValue);
+    // Update highcharts map widget based on the selected value
+    if(selectedValue === "protectionScore"){
+
+    }
+    if(selectedValue === "policyThreatProtectionScore"){
+
+    }
+    if(selectedValue === "exclusionScore"){
+
+    }
+    if(selectedValue === "tamperProtectionScore"){
+
+    }
 }
 
 window.getRegionalProtectionScoreChartData = getRegionalProtectionScoreChartData;
+window.updateRegionalProtectionScoreChartData = updateRegionalProtectionScoreChartData;
