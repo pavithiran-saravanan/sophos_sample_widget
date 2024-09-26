@@ -1,156 +1,224 @@
 let healthScoresChartData;
 let protectionScoreChartData;
-let plicyThreatProtectionScoreChartData;
+let policyThreatProtectionScoreChartData;
 let exclusionScoreChartData;
 let tamperProtectionScoreChartData;
+let updating = false;
 
 document.addEventListener('DOMContentLoaded', function () {
-    // Widget 1 - Protection Score
+    // Widget 1 - Threat Protection Score
     protectionScoreChartData = Highcharts.chart('protectionScoreChart', {
         title: {
             text: 'Protection Score',
             align: 'left'
         },
         subtitle: {
-            text: `<div style='font-size: 40px'>10%</div>`,
+            text: `<div style='font-size: 40px'>10</div>`,
             align: "center",
             verticalAlign: "middle",
             style: {
                 "textAlign": "center"
             },
             x: 0,
+            y: 20,
             useHTML: true
         },
         series: [{
             type: 'pie',
             enableMouseTracking: false,
-            innerSize: '80%',
+            innerSize: '85%',
             dataLabels: {
                 enabled: false
             },
             data: [{
                 y: 10,
-                color: '#21aeeb'
+                color: '#62acfc'
             }, {
                 y: 90,
                 color: 'whitesmoke'
+            }, {  // A small white circle at the end of the progress
+                y: 0.5, 
+                color: '#FFFFFF',
+                borderColor: '#FFFFFF',
+                dataLabels: {
+                    enabled: false
+                },
+                size: '100%',
+                innerSize: '80%'
             }]
         }],
-        // This function will update the subtitle with the actual data value dynamically
         chart: {
             events: {
-                load: function () {
-                    const chart = this;
-                    const actualValue = chart.series[0].data[0].y; // Get the first slice's y value (e.g., 10)
-                    chart.update({
-                        subtitle: {
-                            text: `<div style='font-size: 40px'>${actualValue}%</div>`
-                        }
-                    });
+                redraw: function () {
+                    if (!updating) {
+                        updating = true;
+                        const chart = this;
+                        const actualValue = chart.series[0].data[0].y; // Get the first slice's y value (e.g., 10)
+                        chart.update({
+                            subtitle: {
+                                text: `<div style='font-size: 50px'>${actualValue}</div>`
+                            }
+                        }); 
+                        updating = false;
+                    }
                 }
             }
         }
     });
 
-    // Widget 2 - Policy Threat Protection Score
-    plicyThreatProtectionScoreChartData = Highcharts.chart('plicyThreatProtectionScoreChart', {
+    // Widget 2 - Policy Threat Protection Score 
+    policyThreatProtectionScoreChartData = Highcharts.chart('policyThreatProtectionScoreChart', {
         title: {
-          text: 'Policy Threat Protection Score',
-          align: 'left'
+            text: 'Protection Score',
+            align: 'left'
         },
         subtitle: {
-          text: `<div style='font-size: 40px'>10</div>`,
-          align: "center",
-          verticalAlign: "middle",
-          style: {
-            "textAlign": "center"
-          },
-          x: 0,
-          useHTML: true
+            text: `<div style='font-size: 40px'>10</div>`,
+            align: "center",
+            verticalAlign: "middle",
+            style: {
+                "textAlign": "center"
+            },
+            x: 0,
+            y: 20,
+            useHTML: true
         },
         series: [{
-          type: 'pie',
-          enableMouseTracking: false,
-          innerSize: '80%',
-          dataLabels: {
-            enabled: false
-          },
-          data: [{
-            y: 10,
-            color: '#d17d0f'
-          }, {
-            y: 90,
-            color: 'whitesmoke'
-          }]
-        }]
-      });
+            type: 'pie',
+            enableMouseTracking: false,
+            innerSize: '85%',
+            dataLabels: {
+                enabled: false
+            },
+            data: [{
+                y: 10,
+                color: '#ae8f0c'
+            }, {
+                y: 90,
+                color: 'whitesmoke'
+            }]
+        }],
+        chart: {
+            events: {
+                redraw: function () {
+                    if (!updating) {
+                        updating = true;
+                        const chart = this;
+                        const actualValue = chart.series[0].data[0].y; // Get the first slice's y value (e.g., 10)
+                        chart.update({
+                            subtitle: {
+                                text: `<div style='font-size: 50px'>${actualValue}</div>`
+                            }
+                        }); 
+                        updating = false;
+                    }
+                }
+            }
+        }
+    });
 
-    // Widget 3 - Exclusion Score
+    // Widget 3 - Exclusion Score 
     exclusionScoreChartData = Highcharts.chart('exclusionScoreChart', {
         title: {
-          text: 'Exclusion Score',
-          align: 'left'
+            text: 'Protection Score',
+            align: 'left'
         },
         subtitle: {
-          text: `<div style='font-size: 40px'>10</div>`,
-          align: "center",
-          verticalAlign: "middle",
-          style: {
-            "textAlign": "center"
-          },
-          x: 0,
-          useHTML: true
+            text: `<div style='font-size: 40px'>10</div>`,
+            align: "center",
+            verticalAlign: "middle",
+            style: {
+                "textAlign": "center"
+            },
+            x: 0,
+            y: 20,
+            y: 20,
+            useHTML: true
         },
         series: [{
-          type: 'pie',
-          enableMouseTracking: false,
-          innerSize: '80%',
-          dataLabels: {
-            enabled: false
-          },
-          data: [{
-            y: 10,
-            color: '#085aa6'
-          }, {
-            y: 90,
-            color: 'whitesmoke'
-          }]
-        }]
-      });
+            type: 'pie',
+            enableMouseTracking: false,
+            innerSize: '85%',
+            dataLabels: {
+                enabled: false
+            },
+            data: [{
+                y: 10,
+                color: '#256dc3'
+            }, {
+                y: 90,
+                color: 'whitesmoke'
+            }]
+        }],
+        chart: {
+            events: {
+                redraw: function () {
+                    if (!updating) {
+                        updating = true;
+                        const chart = this;
+                        const actualValue = chart.series[0].data[0].y; // Get the first slice's y value (e.g., 10)
+                        chart.update({
+                            subtitle: {
+                                text: `<div style='font-size: 50px'>${actualValue}</div>`
+                            }
+                        }); 
+                        updating = false;
+                    }
+                }
+            }
+        }
+    });
 
-    // Widget 4 - Tamper Protection Score
+    // Widget 4 - Tamper Protection Score 
     tamperProtectionScoreChartData = Highcharts.chart('tamperProtectionScoreChart', {
         title: {
-          text: 'Tamper Protection Score',
-          align: 'left'
+            text: 'Protection Score',
+            align: 'left'
         },
         subtitle: {
-          text: `<div style='font-size: 40px'>10</div>`,
-          align: "center",
-          verticalAlign: "middle",
-          style: {
-            "textAlign": "center"
-          },
-          x: 0,
-          useHTML: true
+            text: `<div style='font-size: 40px'>10</div>`,
+            align: "center",
+            verticalAlign: "middle",
+            style: {
+                "textAlign": "center"
+            },
+            x: 0,
+            y: 20,
+            useHTML: true
         },
         series: [{
-          type: 'pie',
-          enableMouseTracking: false,
-          innerSize: '80%',
-          dataLabels: {
-            enabled: false
-          },
-          data: [{
-            y: 10,
-            color: '#a6084a'
-          }, {
-            y: 90,
-            color: 'whitesmoke'
-          }]
-        }]
-      });
-
+            type: 'pie',
+            enableMouseTracking: false,
+            innerSize: '85%',
+            dataLabels: {
+                enabled: false
+            },
+            data: [{
+                y: 10,
+                color: '#ec0b50'
+            }, {
+                y: 90,
+                color: 'whitesmoke'
+            }]
+        }],
+        chart: {
+            events: {
+                redraw: function () {
+                    if (!updating) {
+                        updating = true;
+                        const chart = this;
+                        const actualValue = chart.series[0].data[0].y; // Get the first slice's y value (e.g., 10)
+                        chart.update({
+                            subtitle: {
+                                text: `<div style='font-size: 50px'>${actualValue}</div>`
+                            }
+                        }); 
+                        updating = false;
+                    }
+                }
+            }
+        }
+    });
 });
 
 function runHealthCheckQuery() {
@@ -178,8 +246,7 @@ function setProtectionScore(score){
 }
 
 function setPolicyProtectionScore(score){
-    plicyThreatProtectionScoreChartData.series[0].setData([score, 100-score]);
-
+    policyThreatProtectionScoreChartData.series[0].setData([score, 100-score]);
 }
 
 function setExclustionScore(score){
@@ -193,9 +260,9 @@ function setTamperProtectionScore(score){
 export function getHealthScoresChartData() {
     runHealthCheckQuery().then(scoresData => {
         const protectionScore = scoresData.endpoint.protection.computer.score;
-        const policyThreatProtectionScore = scoresData.endpoint.policy.server['server-threat-protection'];
-        const exclusionScore = scoresData.endpoint.protection.computer.score;
-        const tamperProtectionScore = scoresData.endpoint.protection.computer.score;
+        const policyThreatProtectionScore = scoresData.endpoint.policy.server['server-threat-protection'].score;
+        const exclusionScore = scoresData.endpoint.exclusions.global.score;
+        const tamperProtectionScore = scoresData.endpoint.tamperProtection.globalDetail.score;
         setProtectionScore(protectionScore);
         setPolicyProtectionScore(policyThreatProtectionScore);
         setExclustionScore(exclusionScore);
