@@ -69,7 +69,7 @@ document.addEventListener('DOMContentLoaded', function () {
     // Widget 2 - Policy Threat Protection Score 
     policyThreatProtectionScoreChartData = Highcharts.chart('policyThreatProtectionScoreChart', {
         title: {
-            text: 'Protection Score',
+            text: 'Policy Threat Protection Score',
             align: 'left'
         },
         subtitle: {
@@ -120,7 +120,7 @@ document.addEventListener('DOMContentLoaded', function () {
     // Widget 3 - Exclusion Score 
     exclusionScoreChartData = Highcharts.chart('exclusionScoreChart', {
         title: {
-            text: 'Protection Score',
+            text: 'Exclusion Score',
             align: 'left'
         },
         subtitle: {
@@ -172,7 +172,7 @@ document.addEventListener('DOMContentLoaded', function () {
     // Widget 4 - Tamper Protection Score 
     tamperProtectionScoreChartData = Highcharts.chart('tamperProtectionScoreChart', {
         title: {
-            text: 'Protection Score',
+            text: 'Tamper Protection Score',
             align: 'left'
         },
         subtitle: {
