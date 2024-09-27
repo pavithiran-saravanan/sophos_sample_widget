@@ -8,6 +8,7 @@ $(document).ready(function() {
             getTopEndpointsByAlertsChartData();
             getRecentAlertsData();
             getAlertHeatMapData();
+            getPerformActionsWidgetData();
         });
     })
 });

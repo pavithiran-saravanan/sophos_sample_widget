@@ -279,3 +279,43 @@
     display: flex;
     width: 100%;
 }
+
+/* Perform Actions Widget */
+#performActionsWidget{
+    display: grid;
+    place-content: center;
+}
+
+.performActionsWidgetContent{
+    font-family: sans-serif;
+    width: 300px;
+    margin-top: -60px;
+}
+
+.performActionsWidgetContent label {
+    display: block;
+    margin-bottom: 5px;
+    font-weight: bold;
+}
+
+.performActionsWidgetContent select {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 20px;
+    border: 1px solid #ccc;
+    border-radius: 3px;
+}
+
+.performActionsWidgetContent button {
+    width: 100%;
+    padding: 10px;
+    background-color: #007bff;
+    color: white;
+    border: none;
+    border-radius: 3px;
+    cursor: pointer;
+}
+
+.performActionsWidgetContent button:hover {
+    background-color: #0056b3;
+}
