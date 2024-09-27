@@ -67,7 +67,15 @@ function getAttackDiv(attackName, attackCount){
     return div;
 }
 
-function getTechniqueDiv(techniqueId, techniqueName){
+function getSeverityClass(severity){
+    if(severity > 10) return "critical";
+    if(severity >= 8) return "high";
+    if(severity >= 4) return "medium";
+    if(severity >= 1) return "low";
+    else return "info";
+}
+
+function getTechniqueDiv(techniqueId, techniqueName, severity){
     const div = document.createElement('div');
     div.classList.add('techniqueContainer');
     // Technique Id
@@ -78,6 +86,8 @@ function getTechniqueDiv(techniqueId, techniqueName){
     const name = document.createElement('div');
     name.classList.add('techniqueName');
     name.textContent = techniqueName;
+    // Technique severity
+    div.classList.add(getSeverityClass(severity));
     div.append(id, name);
     return div;
 }
@@ -88,35 +98,35 @@ export function getAlertHeatMapData() {
             console.error('Run Detections response or id is undefined');
             return;
         }
-        
-        let tacticNameToIdMap = {};
-        let tacticAlertsCounter = {};
-        
+        let tacticTechniqueCounter = {};
+        let techniquesInfo = {};
+        let tacticTechniqueSeverity = {};
+
         detections.items.forEach(detection => {
             if (detection.mitreAttacks && detection.mitreAttacks.length > 0) {
-                detection.mitreAttacks.forEach(attack => {
-                    if(!tacticAlertsCounter[attack.tactic.name]){
-                        tacticAlertsCounter[attack.tactic.name] = 0;
-                    }
-                    if(!tacticNameToIdMap[attack.tactic.name]){
-                        tacticNameToIdMap[attack.tactic.name] = [];
-                    }
-                    tacticAlertsCounter[attack.tactic.name]++;
-                    attack.tactic.techniques.forEach(technique => {
-                        tacticNameToIdMap[attack.tactic.name].push(technique);
+                detection.mitreAttacks.forEach((attack) => {
+                    const tactic = attack.tactic;
+                    if(!tacticTechniqueCounter[tactic.name]) tacticTechniqueCounter[tactic.name] = {};
+                    if(!tacticTechniqueSeverity[tactic.name]) tacticTechniqueSeverity[tactic.name] = {};
+                    tactic.techniques.forEach(technique => {
+                        if(!techniquesInfo[technique.id]) techniquesInfo[technique.id] = technique;
+                        if(!tacticTechniqueCounter[tactic.name][technique.id]) tacticTechniqueCounter[tactic.name][technique.id] = 1;
+                        else tacticTechniqueCounter[tactic.name][technique.id]++;
+                        if(!tacticTechniqueSeverity[tactic.name][technique.id]) tacticTechniqueSeverity[tactic.name][technique.id] = detection.severity;
                     })
                 });
             }
         });
-
-        console.log(tacticNameToIdMap, tacticAlertsCounter);
+        console.log(tacticTechniqueCounter, techniquesInfo, tacticTechniqueSeverity);
         const alertHeatMapContainer = document.querySelector('#alertHeatMapWidget');
         alertHeatMapContainer.innerHTML = '';
-        Object.entries(tacticNameToIdMap).forEach(tactic => {
-            let alertsCount = tactic[1].length;
-            const attackDiv = getAttackDiv(tactic[0], alertsCount);
-            tactic[1].forEach(technique=>{
-                attackDiv.append(getTechniqueDiv(technique.id, technique.name))
+        Object.entries(tacticTechniqueCounter).forEach(entry => {
+            const techniquIds = Object.keys(entry[1]);
+            const techniqueCounts = Object.values(entry[1]);
+            let alertsCount = techniqueCounts.reduce((total, count) => total + count, 0);
+            const attackDiv = getAttackDiv(entry[0], alertsCount);
+            techniquIds.forEach(techniqueId => {
+                attackDiv.append(getTechniqueDiv(techniqueId, techniquesInfo[techniqueId].name, tacticTechniqueSeverity[entry[0]][techniqueId])); 
             })
             alertHeatMapContainer.append(attackDiv);
         })
